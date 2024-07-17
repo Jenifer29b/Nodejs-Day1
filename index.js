@@ -16,16 +16,23 @@ app.get('/write', (req, res) => {
     console.log(today);
     const filepath = `TimeStamp/ ${today}`
 
-    fs.writeFileSync( filepath , `${today}`,'utf-8');
+    fs.writeFileSync(filepath, `${today}`, 'utf-8');
+    let data = fs.readFileSync(filepath, 'utf-8')
+    try {
+        res.status(200).send(data)
+
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 app.get('/read', (req, res) => {
-    const today = format(new Date(), 'dd-MM-yyyy-hh-mm-ss')
-    const filepath = `TimeStamp/ ${today}`
-    let data = fs.readFileSync(filepath, 'utf-8')
+    const today1 = format(new Date(), 'dd-MM-yyyy-hh-mm-ss')
+    const filepath = `TimeStamp/ ${today1}`
+    let data1 = fs.readFileSync(filepath, 'utf-8')
 
     try {
-        res.status(200).send(data)
+        res.status(200).send(data1)
         
     } catch (error) {
         console.log(error);
