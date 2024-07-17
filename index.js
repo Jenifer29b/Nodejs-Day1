@@ -20,7 +20,8 @@ app.get('/write', (req, res) => {
 })
 
 app.get('/read', (req, res) => {
-    const filepath = 'TimeStamp'
+    const today = format(new Date(), 'dd-MM-yyyy-hh-mm-ss')
+    const filepath = `TimeStamp/ ${today}`
     let data = fs.readFileSync(filepath, 'utf-8')
 
     try {
